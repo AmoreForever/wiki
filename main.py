@@ -1,5 +1,4 @@
 import logging
-from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram import Bot, Dispatcher, types
 import wikipedia, re, asyncio
 
@@ -13,9 +12,9 @@ print("Bot started")
 
 token = "5873603854:AAGwg2iN_JLwG2gi-BInK-07QRQ2lnzsfKk"
 
-storage = MemoryStorage()
+
 bot = Bot(token=token)
-dp = Dispatcher(bot, storage=storage)
+dp = Dispatcher(bot)
 
 wikipedia.set_lang("ru")
 
