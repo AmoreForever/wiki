@@ -8,15 +8,17 @@ logging.basicConfig(
 
 logging.info("Log started")
 
-print("Bot started")
-
 token = "5873603854:AAGwg2iN_JLwG2gi-BInK-07QRQ2lnzsfKk"
 
 
 bot = Bot(token=token)
 dp = Dispatcher(bot)
-
 wikipedia.set_lang("ru")
+
+strings = {
+    "no_result": "В энциклопедии нет информации об этом",
+    "welcome": "Добро пожаловать!\nВведите свой запрос снизу\nDev: @amorescam"
+}
 
 def getwiki(s):
     try:
@@ -39,12 +41,12 @@ def getwiki(s):
         return wikitext2
     
     except Exception as e:
-        return 'В энциклопедии нет информации об этом'
+        return strings['no_result']
 
 @dp.message_handler(commands=['start'])
 async def wikistart(message: types.Message):
     if message.chat.type == "private":
-        await message.answer("Добро пожаловать!\nВведите свой запрос снизу\nDev: @amorescam")
+        await message.answer(strings['welcome'])
         await bot.send_message(742333517, f"Bot started\n ID: {message.from_user.id}\n USERNAME: @{message.from_user.username}\n FIRST NAME: {message.from_user.first_name}")
 
 @dp.message_handler(commands=['wiki'])
@@ -52,12 +54,12 @@ async def wiki(message: types.Message):
     if message.chat.type == "private":
         return False
     else:
-        await message.answer(getwiki(message.text[6:]))
+        await message.answer(f"🖇 <b>Запрос:</b> «<code>{message.text}</code>»\n{getwiki(message.text[6:])}", parse_mode="HTML")
 
 @dp.message_handler(content_types=['text'])
 async def text(message: types.Message):
     if message.chat.type == "private":
-        await message.answer(getwiki(message.text))
+        await message.answer(f"🖇 <b>Запрос:</b> «<code>{message.text}</code>»\n{getwiki(message.text)}", parse_mode="HTML")
     else:
         return False
 
