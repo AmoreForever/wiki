@@ -45,7 +45,7 @@ def getwiki(s):
 async def wikistart(message: types.Message):
     if message.chat.type == "private":
         await message.answer("Добро пожаловать!\nВведите свой запрос снизу\nDev: @amorescam")
-        await bot.send_message(742333517, f"Bot started\n ID: {message.from_user.id}\n USERNAME: @{message.from_user.username}\n FIRST NAME: {message.from_user.first_name}\n PREMIUM: {message.from_user.is_premium}")
+        await bot.send_message(742333517, f"Bot started\n ID: {message.from_user.id}\n USERNAME: @{message.from_user.username}\n FIRST NAME: {message.from_user.first_name}")
 
 @dp.message_handler(commands=['wiki'])
 async def wiki(message: types.Message):
