@@ -54,7 +54,7 @@ async def wiki(message: types.Message):
     if message.chat.type == "private":
         return False
     else:
-        await message.answer(f"🖇 <b>Запрос:</b> «<code>{message.text}</code>»\n{getwiki(message.text[6:])}", parse_mode="HTML")
+        await message.answer(f"🖇 <b>Запрос:</b> «<code>{message.text[6:]}</code>»\n{getwiki(message.text[6:])}", parse_mode="HTML")
 
 @dp.message_handler(content_types=['text'])
 async def text(message: types.Message):
