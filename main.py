@@ -8,7 +8,7 @@ logging.basicConfig(
 
 logging.info("Log started")
 
-token = "5873603854:AAGwg2iN_JLwG2gi-BInK-07QRQ2lnzsfKk"
+token = ""
 
 
 bot = Bot(token=token)
